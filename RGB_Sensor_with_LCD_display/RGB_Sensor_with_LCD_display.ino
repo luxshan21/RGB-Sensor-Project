@@ -62,34 +62,42 @@ void loop() {
   Serial.print("B=");
   Serial.print(blue);
   digitalWrite(blueled,LOW);
+  if (red>100&&blue>100&&green>100){
+    redvalue=LOW;
+    greenvalue=LOW;
+    bluevalue=LOW;
+    lcd.setCursor(0, 1);
+    lcd.print("   White Color   ") ;
+    }
 
-  if (red>green&&red>blue){
+
+  else if (red>green&&red>blue&&50<red){
     redvalue=HIGH;
     lcd.setCursor(0, 1);  
     lcd.print("    RED Color   ");
     }
-   else
-   redvalue=LOW;
 
-  if (green>red&&green>blue){
+  else if (green>red&&green>blue&&green>100){
     greenvalue=HIGH;
     lcd.setCursor(0, 1); 
     lcd.print("   Green Color   ");
     }
-  else
-   greenvalue=LOW;
 
-  if (blue>red&&blue>green){
+  else if (blue>red&&blue>green&&blue>50){
     bluevalue=HIGH;
     lcd.setCursor(0, 1);
     lcd.print("   Blue Color   ") ;
     }
-  else
-   bluevalue=LOW;
 
- 
-  
-  
+   
+   else{
+    redvalue=LOW;
+    greenvalue=LOW;
+    bluevalue=LOW;
+    lcd.setCursor(0, 1);
+    lcd.print("   Insert Colour   ") ;
+    }
+
   digitalWrite(redout,redvalue);
   digitalWrite(greenout,greenvalue);
   digitalWrite(blueout,bluevalue);
